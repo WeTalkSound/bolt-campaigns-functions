@@ -21,6 +21,8 @@ exports.boltCaptchaFilterHighScores = functions.https.onRequest((req, res) => {
       highscores = highscores
         .sort((a,b) => a.score > b.score ? -1 : 1)
         .slice(0, limit);
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       res.json(highscores);
     });
 });
